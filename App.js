@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// In App.js in a new project
 
-export default function App() {
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { List } from 'react-native-paper';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import UserData from './components/UserData';
+
+const Stack = createNativeStackNavigator();
+// Create a constant with users we have created accounts for.
+function HomeScreen({navigation}) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'top' }}>
+      <Text>SMS Record - Home</Text>
+      <List.Item
+        title="Mwiza Simbeye"
+        description="13 Messages"
+        left={props => <List.Icon {...props} icon="message" />}
+        onPress={() =>
+          navigation.navigate('Person', {username: 'Wanda_Bongo'})
+        }
+      />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const PersonScreen = ({navigation, route}) => {
+  return <UserData route={route}/>;
+};
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Person" component={PersonScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
