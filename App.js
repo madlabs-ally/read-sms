@@ -1,5 +1,3 @@
-// In App.js in a new project
-
 import * as React from 'react';
 import { Text, View } from 'react-native';
 import { List } from 'react-native-paper';
@@ -18,7 +16,15 @@ function HomeScreen({navigation}) {
         description="13 Messages"
         left={props => <List.Icon {...props} icon="message" />}
         onPress={() =>
-          navigation.navigate('Person', {username: 'Wanda_Bongo'})
+          navigation.navigate('Person', {username: 'Madlabs173'})
+        }
+      />
+       <List.Item
+        title="Mwiza Simbeye"
+        description="13 Messages"
+        left={props => <List.Icon {...props} icon="message" />}
+        onPress={() =>
+          navigation.navigate('Person', {username: 'Madalitso'})
         }
       />
     </View>
